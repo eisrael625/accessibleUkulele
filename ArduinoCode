@@ -1,0 +1,233 @@
+#include <Servo.h>
+#include <SoftwareSerial.h> // Allows communication with Bluetooth
+
+Servo string1; // create servo object to control a servo
+Servo string2; // create servo object to control a servo
+Servo string3; // create servo object to control a servo
+Servo string4; // create servo object to control a servo
+Servo string5; // create servo object to control a servo
+Servo string6; // create servo object to control a servo
+
+int String1 = 0;
+int String2 = 0;
+int String3 = 0;
+int String4 = 0;
+int String5 = 0;
+int String6 = 0; //create integer variables for the position of camshaft on string
+int data = 0; // create integer variable for data that comes in through bluetooth
+
+
+SoftwareSerial mySerial(0, 1); // RX, TX
+//0,60,and 90 correspond to angles that the servo motors will rotate. When rotated 30 degrees, first fret is held down, ext.
+
+void setup() {
+string1.attach(3); // attaches the String1 on pin 3 to the servo object
+string2.attach(5); // attaches the String2 on pin 5 to the servo object
+string3.attach(6); // attaches the String3 on pin 6 to the servo object
+string4.attach(9); // attaches the String4 on pin 9 to the servo object
+string5.attach(10); // attaches the String5 on pin 10 to the servo object
+string6.attach(11); // attaches the String6 on pin 11 to the servo object
+
+
+// Open communication with bluetooth and wait for port to open:
+Serial.begin(57600);
+
+
+Serial.println("Initiated");
+
+// set the data rate for the SoftwareSerial port
+mySerial.begin(9600);
+mySerial.println("Hello, world?");
+
+
+}
+
+void loop() {
+
+string1.write(String1);
+string2.write(String2);
+string3.write(String3);
+string4.write(String4); // start servos at certain position
+string5.write(String5);
+string6.write(String6);
+if (mySerial.available() ) // if recieve data
+{
+
+   data = mySerial.read(); // define data as the num recieved from BT
+   Serial.print(data);
+   Serial.print("-");
+
+
+   if ((data) == 1)
+   {
+      Serial.println(" A");
+      playA(); // Run function to play chord
+   }
+   if ((data) == 2)
+   {
+      Serial.println(" Am");
+      playAm(); // Run function to play chord
+   }
+   if ((data) == 3)
+   {
+      Serial.println(" B7");
+      playB7(); // Run function to play chord
+   }
+   if ((data) == 4)
+   {
+      Serial.println(" C");
+      playC(); // Run function to play chord
+   }
+   if ((data) == 5)
+   {
+      Serial.println(" D");
+      playD(); // Run function to play chord
+   }
+   if ((data) == 6)
+   {
+      Serial.println(" Dm");
+      playDm(); // Run function to play chord
+   }
+   if ((data) == 7)
+   {
+      Serial.println(" E");
+      playE(); // Run function to play chord
+   }
+   if ((data) == 8)
+   {
+      Serial.println(" Em");
+      playEm(); // Run function to play chord
+   }
+   if ((data) == 9)
+   {
+      Serial.println(" F");
+      playF(); // Run function to play chord
+   }
+   if ((data) == 10)
+   {
+      Serial.println(" G");
+      playG(); // Run function to play chord
+   }
+   if ((data) == 11)
+   {
+      Serial.println(" C7");
+      playC7(); // Run function to play chord
+   }
+   if ((data) == 12)
+   {
+      Serial.println(" D7");
+      playD7(); // Run function to play chord
+   }
+   Serial.println("" + String(String1) + "\t" + String(String2) + "\t" + String(String3) + "\t" + String(String4) + "\t" + String(String5) + "\t" + String(String6));
+ }
+}
+
+void playA()
+{
+   String1 = 0;
+   String2 = 0;
+   String3 = 60;
+   String4 = 60;
+   String5 = 60;
+   String6 = 0;
+}
+void playAm()
+{
+   String1 = 0;
+   String2 = 0;
+   String3 = 60;
+   String4 = 60;
+   String5 = 30;
+   String6 = 0;
+}
+void playB7()
+{
+   String1 = 0;
+   String2 = 60;
+   String3 = 30;
+   String4 = 60;
+   String5 = 0;
+   String6 = 60;
+}
+
+void playC()
+{
+   String1 = 0;
+   String2 = 90;
+   String3 = 60;
+   String4 = 0;
+   String5 = 30;
+   String6 = 0;
+}
+void playD()
+{
+   String1 = 0;
+   String2 = 0;
+   String3 = 0;
+   String4 = 60;
+   String5 = 90;
+   String6 = 60;
+}
+void playDm()
+{
+   String1 = 0;
+   String2 = 0;
+   String3 = 0;
+   String4 = 60;
+   String5 = 90;
+   String6 = 60;
+}
+void playE()
+{
+   String1 = 0;
+   String2 = 60;
+   String3 = 60;
+   String4 = 30;
+   String5 = 0;
+   String6 = 0;
+}
+void playEm()
+{
+   String1 = 0;
+   String2 = 60;
+   String3 = 60;
+   String4 = 0;
+   String5 = 0;
+   String6 = 0;
+}
+void playF()
+{
+   String1 = 0;
+   String2 = 90;
+   String3 = 90;
+   String4 = 60;
+   String5 = 30;
+   String6 = 30;
+}
+void playG()
+{
+   String1 = 90;
+   String2 = 60;
+   String3 = 0;
+   String4 = 0;
+   String5 = 0;
+   String6 = 90;
+}
+void playC7()
+{
+   String1 = 0;
+   String2 = 90;
+   String3 = 60;
+   String4 = 90;
+   String5 = 30;
+   String6 = 0;
+}
+void playD7()
+{
+   String1 = 0;
+   String2 = 0;
+   String3 = 0;
+   String4 = 60;
+   String5 = 30;
+   String6 = 60;
+}
