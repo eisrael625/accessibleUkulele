@@ -1,6 +1,7 @@
 # Accessible Ukulele
 
 https://youtu.be/hzT_5FR4R1s
+accessibleguitar.com
 
 The Accessible Ukulele is an attachment to any standard sized ukulele that allows a player to select the series of chords they would like to play through a Bluetooth App. The device then holds down the chords in progression for the player, allowing the player to create music just by strumming, with the chords switching autonomously. 
 
